@@ -24,6 +24,9 @@ class ProductManager {
             code,
             stock,
         }
+        if(!newProduct.title || !newProduct.descripcion || !newProduct.price || !newProduct.thumbnail || !newProduct.code || !newProduct.stock){
+            return console.log('Producto incompleto incompleto');
+        }
         this.productos.push(newProduct);
     }
     getProductById(idProduct){
@@ -39,6 +42,6 @@ const productManager = new ProductManager();
 
 productManager.addProduct("crema 200g", "doble crema", 469, "www.tregar.com/crema", 132, 24)
 productManager.addProduct("crema 350g", "doble crema", 810, "www.tregar.com/crema", 122, 24)
-productManager.getProductById(4);
+productManager.getProductById(2);
 const products = productManager.getProducts();
 console.log(products)
