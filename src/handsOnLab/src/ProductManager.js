@@ -15,6 +15,7 @@ class ProductManager{
 }
     exist = async (id) => {
         let products = await this.readProducts()
+        console.log(products)
         return  products.find(prod => prod.id == id)
 }
     writeProducts = async (product) => {
@@ -27,6 +28,7 @@ class ProductManager{
         product.id = ProductManager.id;
         let productAll = [...productsOld, product]
         await this.writeProducts(productAll)
+        console.log("Productos Agregado")
         return "Productos Agregado"
     }
     getProduct = async () => {
@@ -36,6 +38,7 @@ class ProductManager{
     getProductById = async (id) => {
         let productById = await this.exist(id)
         if (!productById) return "Producto no encontrado"
+        console.log(productById)
         return productById
     }
 
@@ -46,6 +49,7 @@ class ProductManager{
         let productOld = await this.readProducts();
         let products = [{...product, id : id}, ...productOld]
         await this.writeProducts(products);
+        console.log("Producto actualizado")
         return "Producto actualizado con exito"
     }
     deletProducts = async (id) => {
@@ -54,6 +58,7 @@ class ProductManager{
         if (existProduct) {
             let filterProducts = products.filter(prod => prod.id != id)
             await this.writeProducts(filterProducts)
+            console.log("Producto eliminado")
             return "Producto eliminado"}
         return "Producto a eliminar inexistente"    
     }
@@ -62,12 +67,12 @@ class ProductManager{
 
 export default ProductManager
     const productManager = new ProductManager();
+    // productManager.addProducts({
+    //     title: 'Dulce de leche 400g',
+    //     description: 'Estilo casero',
+    //     price: 570,
+    //     thumbnail: 'https://www.tregar.com.ar/wp-content/uploads/2021/08/crema-dolecrema-350cc-Tregar.jpg',
+    //     code: '122',
+    //     stock: 56
+    // })
     productManager.readProducts();
-// productManager.addProducts({
-//     title: 'Crema 350g',
-//     description: 'Doble crema',
-//     price: 970,
-//     thumbnail: 'https://www.tregar.com.ar/wp-content/uploads/2021/08/crema-dolecrema-350cc-Tregar.jpg',
-//     code: '126',
-//     stock: 12 
-// })
