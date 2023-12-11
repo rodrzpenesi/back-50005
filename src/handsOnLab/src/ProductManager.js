@@ -1,15 +1,3 @@
-
-// export default ProductManager
-//     const productManager = new ProductManager('./Products.json');
-//     productManager.addProducts({
-//         title: 'Dulce de leche 400g',
-//         description: 'Estilo casero',
-//         price: 570,
-//         thumbnail: 'https://www.tregar.com.ar/wp-content/uploads/2021/08/crema-dolecrema-350cc-Tregar.jpg',
-//         code: '122',
-//         stock: 56
-//     })
-//     productManager.getProduct();
 import { promises } from "fs";
 import fs from "fs";
 
