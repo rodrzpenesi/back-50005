@@ -11,10 +11,15 @@ class ProductManager {
 }
   async addProduct(product) {
     ProductManager.id++
+    const products = await this.getProducts();
+    for (let i = 0; i < products.length; i++) {
+      if (products == products) {
+        return console.error(`Producto repetido`) }
+        break;
+    }
     if(!product.title || !product.description || !product.price || !product.thumbnail || !product.code || !product.stock){
         return console.log('Producto incompleto');
     }
-    const products = await this.getProducts();
     const newProduct = {
       id: await this.getLength() + 1,
       title: product.title,
@@ -48,7 +53,7 @@ class ProductManager {
     if (!productById) console.log ("Producto no encontrado")
     console.log(productById)
     return productById
-}
+  }
   async updateProduct(id, productToUpdate){
     const products = await this.getProducts()
     const updatedProducts = products.map(product => {
@@ -110,10 +115,10 @@ const test = async () => {
         stock: 28,
     }
 
-    // await productManager.addProduct(product1);
-    // await productManager.addProduct(product2);
-    // await productManager.addProduct(product3);
-    // await productManager.addProduct(product4);
+    await productManager.addProduct(product1);
+    await productManager.addProduct(product2);
+    await productManager.addProduct(product3);
+    await productManager.addProduct(product4);
     // await productManager.getProductById(4)
     // await productManager.deletProducts(4)
     // await productManager.updateProduct(4, {title:"Yogurt Bebible Banana"})
