@@ -12,23 +12,24 @@ class ProductManager {
   async addProduct(product) {
     ProductManager.id++
     const products = await this.getProducts();
-    for (let i = 0; i < products.length; i++) {
-      if (products == products) {
-        return console.error(`Producto repetido`) }
-        break;
+    const { title, description, price, thumbnail, code, stock } = product;
+    const newProduct = {
+      id: await this.getLength() + 1,
+      title,
+      description,
+      price,
+      thumbnail,
+      code,
+      stock
+  }
+
+    const producto = products.find(p => p.title === title);
+    if(producto){
+        return console.log('Producto Ya Cargado');
     }
     if(!product.title || !product.description || !product.price || !product.thumbnail || !product.code || !product.stock){
         return console.log('Producto incompleto');
     }
-    const newProduct = {
-      id: await this.getLength() + 1,
-      title: product.title,
-      description: product.description,
-      price: product.price,
-      thumbnail: product.thumbnail,
-      code: product.code,
-      stock: product.stock
-  }
     products.push(newProduct);
     console.log(products);
     await promises.writeFile(this.path, JSON.stringify(products), 'utf-8');
@@ -114,14 +115,22 @@ const test = async () => {
         code: 144,
         stock: 28,
     }
+    const product5 = {
+        title: 'Bebible Vainilla 900ml',
+        description: 'Yogurt Bebible',
+        thumbnail: 'www.tregar.com/#',
+        code: 144,
+        stock: 28,
+    }
 
-    await productManager.addProduct(product1);
-    await productManager.addProduct(product2);
-    await productManager.addProduct(product3);
-    await productManager.addProduct(product4);
-    // await productManager.getProductById(4)
+    // await productManager.addProduct(product1);
+    // await productManager.addProduct(product2);
+    // await productManager.addProduct(product3);
+    // await productManager.addProduct(product4);
+    // await productManager.addProduct(product5);
+    // await productManager.getProductById(3)
     // await productManager.deletProducts(4)
-    // await productManager.updateProduct(4, {title:"Yogurt Bebible Banana"})
+    // await productManager.updateProduct(4, {title:"Yogurt Bebible Banana UPDATE"})
 
   
   }
