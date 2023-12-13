@@ -1,11 +1,10 @@
 {
-  "name": "handsonlab8",
+  "name": "back5005",
   "version": "1.0.0",
-  "description": "",
-  "main": "ProductManager.js",
-  "type" : "module",
+  "main": "src/handsOnLab/src/app.js",
+  "type": "module",
   "scripts": {
-    "dev": "nodemon src/index.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
@@ -14,5 +13,7 @@
     "express": "^4.18.2",
     "nanoid": "^5.0.1",
     "nodemon": "^3.0.1"
-  }
+  },
+  "devDependencies": {},
+  "description": ""
 }

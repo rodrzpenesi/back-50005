@@ -83,12 +83,13 @@ class ProductManager {
 const test = async () => {
     const productManager = new ProductManager('./src/handsOnLab/src/Products.json');
     let data = await productManager.getProducts();
+
     const product1 = {
-        title: 'Crema 200g',
-        description: 'Doble crema',
-        price: 470,
+        title: 'Yogur con Frutas de Anana',
+        description: 'Yogur muy cremoso y suave',
+        price: 310,
         thumbnail: 'www.tregar.com/#',
-        code: 176,
+        code: 140,
         stock: 24,
     }
     const product2 = {
@@ -136,3 +137,5 @@ const test = async () => {
   }
 
 test();
+
+export default ProductManager;
