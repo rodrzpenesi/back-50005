@@ -12,15 +12,16 @@ class ProductManager {
   async addProduct(product) {
     ProductManager.id++
     const products = await this.getProducts();
-    const { title, description, price, thumbnail, code, stock } = product;
+    const { title, description, price, thumbnail, code, stock,} = product;
     const newProduct = {
       id: await this.getLength() + 1,
+      status: true,
       title,
       description,
       price,
       thumbnail,
       code,
-      stock
+      stock,
   }
 
     const producto = products.find(p => p.title === title);
@@ -31,7 +32,7 @@ class ProductManager {
         return console.log('Producto incompleto');
     }
     products.push(newProduct);
-    console.log(products);
+    // console.log(products);
     await promises.writeFile(this.path, JSON.stringify(products), 'utf-8');
   }
 
@@ -58,7 +59,7 @@ class ProductManager {
   async updateProduct(id, productToUpdate){
     const products = await this.getProducts()
     const updatedProducts = products.map(product => {
-        if(product.id === id){
+        if(product.id === +id){
           console.log("Producto Actualizado")
             return {
                 ...product,
@@ -68,7 +69,8 @@ class ProductManager {
         }
         return product
       }) 
-      await fs.promises.writeFile(this.path, JSON.stringify(updatedProducts), 'utf-8')}
+      await fs.promises.writeFile(this.path, JSON.stringify(updatedProducts), 'utf-8')
+    }
   async deletProducts(id) {
     let products = await this.getProducts();
     let existProduct = products.some(prod => prod.id == id)
@@ -136,6 +138,6 @@ const test = async () => {
   
   }
 
-test();
+// test();
 
 export default ProductManager;
