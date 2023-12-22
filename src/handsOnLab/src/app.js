@@ -1,6 +1,7 @@
 import express from 'express';
 import ProductManager from './ProductManager.js';
 import router from './router/product.routes.js';
+import CartRouter from './router/carts.routes.js';
 
 const productManager = new ProductManager('./src/handsOnLab/src/Products.json');
 const app = express();
@@ -12,6 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended:true}));
 
 app.use("/api/products", router)
+app.use("/api/carts", CartRouter)
 
 // app.get("/products", async (req, res) => {
 //     const products = await productManager.getProducts();
