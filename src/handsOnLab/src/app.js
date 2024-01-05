@@ -1,4 +1,6 @@
 import express from 'express';
+import handlebars from 'express-handlebars'
+import viewsRoutes from './router/views.routes.js';
 import ProductManager from './ProductManager.js';
 import router from './router/product.routes.js';
 import CartRouter from './router/carts.routes.js';
@@ -9,19 +11,23 @@ const app = express();
 
 const PORT = 8080;
 
+app.engine('handlebars', handlebars.engine());
+app.set('views', 'src/views')
+app.set('view engine', 'handlebars');;
+app.use('/', viewsRoutes);
 app.use(express.json());
 app.use(express.urlencoded({ extended:true}));
 
 app.use("/api/products", router)
 app.use("/api/carts", CartRouter)
 
-// app.get("/products", async (req, res) => {
-//     const products = await productManager.getProducts();
-//     let limit = parseInt(req.query.limit);
-//     if (!limit) return res.send(products)
-//     let productsFilter = products.slice(0, limit);
-//     res.send(productsFilter)
-// })
+app.get("/products", async (req, res) => {
+    const products = await productManager.getProducts();
+    let limit = parseInt(req.query.limit);
+    if (!limit) return res.send(products)
+    let productsFilter = products.slice(0, limit);
+    res.send(productsFilter)
+})
 app.get("/products/:id", async (req, res) =>{
     const products = await productManager.getProducts();
     try{
