@@ -4,13 +4,14 @@ import viewsRoutes from './router/views.routes.js';
 import ProductManager from './ProductManager.js';
 import router from './router/product.routes.js';
 import CartRouter from './router/carts.routes.js';
+import { Server } from "socket.io";
 
-const productManager = new ProductManager('./src/handsOnLab/src/Products.json');
+const productManager = new ProductManager('./src/Products.json');
 const app = express();
-
-
 const PORT = 8080;
 
+
+app.use(express.static("public"));
 app.engine('handlebars', handlebars.engine());
 app.set('views', 'src/views')
 app.set('view engine', 'handlebars');;
@@ -43,6 +44,11 @@ app.get("/products/:id", async (req, res) =>{
 
 })
 
-app.listen(PORT, () => {
+const httpServer = app.listen(PORT, () => {
     console.log(`Servidor funcionando en puerto ${PORT}`);
 });
+const socketServer = new Server(httpServer);
+
+
+socketServer.on('connection', (socket) => {
+    console.log('Nuevo client conectado')});

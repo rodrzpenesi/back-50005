@@ -1,7 +1,7 @@
 import { promises as fs } from "fs";
 import ProductManager from './ProductManager.js'
 
-const productAll= new ProductManager(('./src/handsOnLab/src/Products.json'));
+const productAll= new ProductManager(('./src/Products.json'));
 
 class CartManager{
     constructor(path){

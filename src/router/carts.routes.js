@@ -2,7 +2,7 @@ import { Router } from "express";
 import CartManager from "../CartManager.js"
 
 
-const carts = new CartManager(('./src/handsOnLab/src/Carts.json'));;
+const carts = new CartManager(('./src/Carts.json'));;
 const CartRouter = Router()
 
 CartRouter.post("/", async (req, res) =>{
