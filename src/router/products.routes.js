@@ -1,50 +1,50 @@
 import {Router} from 'express'
-import { userModel } from '../models/users.model.js'
+import { productModel } from '../models/products.model.js'
 
-const userRoutes = Router();
+const productRoutes = Router();
 
-userRoutes.get("/", async (req, res)=>{
+productRoutes.get("/", async (req, res)=>{
     try{
-        const users = await userModel.find();
-        res.send({users})
+        const products = await productModel.find();
+        res.send({products})
         }catch{
         console.log(error404)
     }
 })
 
-userRoutes.post("/", async (req, res) =>{
+productRoutes.post("/", async (req, res) =>{
     try {
         const newProduct = req.body;
-        const added = await userModel.create(newProduct)
+        const added = await productModel.create(newProduct)
         res.status(201).json({message:'Product Add'})
     } catch (error) {
         res.status(404)
     }
 })
-userRoutes.get("/:id", async (req, res)=>{
+productRoutes.get("/:id", async (req, res)=>{
     const {id} = req.params;
     try {
-        const product = await userModel.findOne({_id:id})
+        const product = await productModel.findOne({_id:id})
         res.send(product)
     } catch (error) {
         console.log(error)
     }
 })
-userRoutes.delete('/:id', async (req, res) => {
+productRoutes.delete('/:id', async (req, res) => {
     const { id } = req.params;
     try {
-        const userDeleted = await userModel.deleteOne({_id: id});
+        const userDeleted = await productModel.deleteOne({_id: id});
         if(userDeleted.deletedCount > 0){
             return res.send({message: 'User deleted'});}
     } catch (error) {
         console.log(error)
     }
 })
-userRoutes.put("/:id", async (req, res) =>{
+productRoutes.put("/:id", async (req, res) =>{
     const {id} = req.params;
     const productToUpdate = req.body
     try {
-        const update = await userModel.updateOne({_id: id}, productToUpdate);
+        const update = await productModel.updateOne({_id: id}, productToUpdate);
         if(update.modifiedCount > 0){
             return res.send({message: 'Product updated'});
         }
@@ -54,4 +54,4 @@ userRoutes.put("/:id", async (req, res) =>{
     }
 })
 
-export default userRoutes;
+export default productRoutes;
