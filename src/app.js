@@ -53,8 +53,14 @@ app.use("/api/products", productRoutes)
 const httpServer = app.listen(PORT, () => {
     console.log(`Servidor funcionando en puerto ${PORT}`);
 });
-const socketServer = new Server(httpServer);
+const io = new Server(httpServer);
 
+const messages = [];
 
-socketServer.on('connection', (socket) => {
-    console.log('Nuevo client conectado')});
+io.on('connection', socket => {
+    console.log('Nuevo client conectado')
+    socket.on('message', data =>{
+        messages.push(data);
+        io.emit('messageLogs', messages)
+    })
+});

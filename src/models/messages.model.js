@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const messagesCollection = "messages"
 
 const messagesShema = mongoose.Schema({
-    email:{
+    user:{
         type: String,
         require:true
     },
