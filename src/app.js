@@ -7,6 +7,7 @@ import CartRouter from './router/carts.routes.js';
 import { Server } from "socket.io";
 import mongoose from 'mongoose';
 import productRoutes from './router/products.routes.js';
+import messagesRoutes from './router/messages.routes.js';
 
 const productManager = new ProductManager('./src/Products.json');
 const app = express();
@@ -44,6 +45,7 @@ mongoose.connect("mongodb+srv://rodrzpenesi:faustoisidro@cluster0.pcy5jzv.mongod
 //     }
 
 // })
+app.use("/api/chat", messagesRoutes)
 app.use("/api/products", productRoutes)
 
 
