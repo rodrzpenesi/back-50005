@@ -7,7 +7,7 @@ const messagesShema = mongoose.Schema({
         type: String,
         require:true
     },
-    messages:{
+    data:{
         type: String,
         require: true
     }

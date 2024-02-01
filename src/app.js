@@ -8,6 +8,7 @@ import { Server } from "socket.io";
 import mongoose from 'mongoose';
 import productRoutes from './router/products.routes.js';
 import messagesRoutes from './router/messages.routes.js';
+import { messagesModel } from './models/messages.model.js';
 
 const productManager = new ProductManager('./src/Products.json');
 const app = express();
@@ -64,5 +65,7 @@ io.on('connection', socket => {
     socket.on('message', data =>{
         messages.push(data);
         io.emit('messageLogs', messages)
+        console.log(messages)
+        const added = messagesModel.create(messages)
     })
 });

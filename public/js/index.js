@@ -30,5 +30,5 @@ socket.on('messageLogs', data =>{
     data.forEach(message =>{
         messages+=`${message.user} dice: ${message.data} <br/>`
     })
-    outputData.innerHTML = messages;
+    outputData.innerHTML = messages
 })
