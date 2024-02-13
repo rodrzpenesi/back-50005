@@ -5,10 +5,16 @@ const productRoutes = Router();
 
 productRoutes.get("/", async (req, res)=>{
     try{
-        const products = await productModel.find();
-        res.send({products})
-        }catch{
-        console.log(error404)
+        const {limit = 10, page = 1, query = '', sort = ''} = req.query
+        const [code, value] = query.split(':');
+        const products = await productModel.paginate({[code]: value},{
+            limit,
+            page,
+            sort : sort ? {precio:sort} : {},
+        });
+        res.send(products)
+        }catch(error){
+        console.log(error)
     }
 })
 
