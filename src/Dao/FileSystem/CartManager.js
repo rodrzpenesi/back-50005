@@ -1,5 +1,6 @@
 import { promises as fs } from "fs";
 import ProductManager from './ProductManager.js'
+import CartModel from "../../models/carts.model.js";
 
 const productAll= new ProductManager(('./src/Products.json'));
 

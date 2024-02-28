@@ -8,6 +8,9 @@ const productShema = mongoose.Schema({
         type: String,
         require:true
     },
+    status:{
+        type: Boolean,
+    },
     description:{
         type: String,
         require: true

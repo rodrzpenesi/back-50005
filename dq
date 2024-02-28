@@ -1,0 +1,137 @@
+[33mcommit ac5408fe93ddc2d3f27e4337625f8e7f77ac3ff4[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Rodrigo Penesi <rodrz.penesi@gmail.com>
+Date:   Tue Feb 13 02:47:06 2024 -0300
+
+    fix 7ta entrega
+
+[33mcommit 2f5b73afd1699b25073c03eacaec206f60d147c0[m
+Author: Rodrigo Penesi <rodrz.penesi@gmail.com>
+Date:   Thu Feb 1 02:13:53 2024 -0300
+
+    fix 6ta entrega
+
+[33mcommit 2e71ad9bae41aed1ce2f57a4a6015f2ac2b043e0[m
+Author: Rodrigo Penesi <rodrz.penesi@gmail.com>
+Date:   Wed Jan 31 01:55:53 2024 -0300
+
+    fix chat2
+
+[33mcommit c5dd1d1da02af24531846a1a4fad11ada5f24532[m
+Author: Rodrigo Penesi <rodrz.penesi@gmail.com>
+Date:   Wed Jan 31 01:42:02 2024 -0300
+
+    fix chat
+
+[33mcommit 1dc63396e629ffdfa56ba2d1b6b75cbb6fb7a105[m
+Author: Rodrigo Penesi <rodrz.penesi@gmail.com>
+Date:   Tue Jan 30 12:59:41 2024 -0300
+
+    dao
+
+[33mcommit 9aaecde978fa4fcfee0ba2dffc06ef21ac0c224a[m
+Author: Rodrigo Penesi <rodrz.penesi@gmail.com>
+Date:   Tue Jan 30 03:52:33 2024 -0300
+
+    fix mongosee
+
+[33mcommit 982c6faaf19e059a47d68aab9171d86fe10d1f5b[m
+Author: Rodrigo Penesi <rodrz.penesi@gmail.com>
+Date:   Wed Jan 10 02:03:05 2024 -0300
+
+    entrega web sockets.io
+
+[33mcommit f3e38fd4a23f512707a84df598332adcdace4dff[m
+Author: Rodrigo Penesi <rodrz.penesi@gmail.com>
+Date:   Fri Jan 5 03:08:59 2024 -0300
+
+    arreglo handlebars
+
+[33mcommit 462a403e7ad04a328af3a874a9681ecfdd2ad81c[m
+Author: Rodrigo Penesi <rodrz.penesi@gmail.com>
+Date:   Fri Jan 5 02:30:41 2024 -0300
+
+    agrego handlebars
+
+[33mcommit 7577512e8819489ca4dd3a980a30f691f2822d72[m
+Author: Rodrigo Penesi <rodrz.penesi@gmail.com>
+Date:   Fri Dec 22 01:06:28 2023 -0300
+
+    arreglo de carts manager
+
+[33mcommit 27a9ded1738f74092485a3761c09ae46d8600cc1[m
+Author: Rodrigo Penesi <rodrz.penesi@gmail.com>
+Date:   Thu Dec 21 03:27:19 2023 -0300
+
+    fix add 4ta entrega
+
+[33mcommit 0eca41ef5cce40a73562e0259f7fdeec19bf9d77[m
+Author: Rodrigo Penesi <rodrz.penesi@gmail.com>
+Date:   Wed Dec 13 02:20:40 2023 -0300
+
+    entrega clase 6
+
+[33mcommit 5845968f016e2940c015bd8e4e31787192d7deaf[m
+Author: Rodrigo Penesi <rodrz.penesi@gmail.com>
+Date:   Wed Dec 13 00:45:59 2023 -0300
+
+    arreglo al problema
+
+[33mcommit 4afa36b94e5168d818e725d03d9d8b26e6642935[m
+Author: Rodrigo Penesi <rodrz.penesi@gmail.com>
+Date:   Tue Dec 12 01:31:58 2023 -0300
+
+    fix loop
+
+[33mcommit 81e74ce1291a2256cc4570dd1e07548074faab99[m
+Author: Rodrigo Penesi <rodrz.penesi@gmail.com>
+Date:   Mon Dec 11 14:58:42 2023 -0300
+
+    fix 44555
+
+[33mcommit f8e8d70d81b59bc852f99a0cdc8745499a4e6aff[m
+Author: Rodrigo Penesi <rodrz.penesi@gmail.com>
+Date:   Mon Dec 11 14:57:47 2023 -0300
+
+    fix 4ta clase
+
+[33mcommit 216b2d3298f6fa5d1f0578afe8b0a149e4fd5158[m
+Author: Rodrigo Penesi <rodrz.penesi@gmail.com>
+Date:   Tue Dec 5 11:58:34 2023 -0300
+
+    probando2
+
+[33mcommit f8901a8269d57b52d032fcb1a913962eebeb838a[m
+Author: Rodrigo Penesi <rodrz.penesi@gmail.com>
+Date:   Tue Dec 5 11:58:01 2023 -0300
+
+    probando
+
+[33mcommit f394525ca9b0ade21da5a11c4f8e947c72011fa8[m
+Author: Rodrigo Penesi <rodrz.penesi@gmail.com>
+Date:   Mon Dec 4 12:57:12 2023 -0300
+
+    entrega 2
+
+[33mcommit aaf5d89c3a371a20cd176fe6cb66dfc0630af6bd[m
+Author: Rodrigo Penesi <rodrz.penesi@gmail.com>
+Date:   Sat Dec 2 21:49:38 2023 -0300
+
+    fix hnonlb
+
+[33mcommit e59e88f7989d4c78e59eece9ea37987fd48f234a[m
+Author: Rodrigo Penesi <rodrz.penesi@gmail.com>
+Date:   Sat Dec 2 21:38:59 2023 -0300
+
+    arreglo a la validacion
+
+[33mcommit eb72335b2862bad0cca2c864df583f08b2fdbeb3[m
+Author: Rodrigo Penesi <rodrz.penesi@gmail.com>
+Date:   Thu Nov 30 14:56:01 2023 -0300
+
+    arreglo a la validacion de code
+
+[33mcommit 8033acaea5461228b8319153ada7a20e479d6536[m
+Author: Rodrigo Penesi <rodrz.penesi@gmail.com>
+Date:   Fri Nov 24 01:43:33 2023 -0300
+
+    first commit

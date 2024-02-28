@@ -14,9 +14,14 @@ const productManager = new ProductManager('./src/Products.json');
 const app = express();
 const PORT = 8080;
 
+const hbs = handlebars.create({
+    runtimeOptions: {
+        allowProtoPropertiesByDefault: true
+    }});
 
 app.use(express.static("public"));
-app.engine('handlebars', handlebars.engine());
+// app.engine('handlebars', handlebars.engine());
+app.engine('handlebars',hbs.engine) 
 app.set('views', 'src/views')
 app.set('view engine', 'handlebars');;
 app.use('/', viewsRoutes);
@@ -24,7 +29,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended:true}));
 mongoose.connect("mongodb+srv://rodrzpenesi:faustoisidro@cluster0.pcy5jzv.mongodb.net/ecommerce")
 // app.use("/api/products", router)
-// app.use("/api/carts", CartRouter)
+app.use("/api/carts", CartRouter)
 // app.get("/products", async (req, res) => {
 //     const products = await productManager.getProducts();
 //     let limit = parseInt(req.query.limit);

@@ -10,8 +10,10 @@ productRoutes.get("/", async (req, res)=>{
         const products = await productModel.paginate({[code]: value},{
             limit,
             page,
-            sort : sort ? {precio:sort} : {},
+            sort : sort ? {price:sort} : {},
         });
+        products.payload=products.docs;
+        delete products.docs;
         res.send(products)
         }catch(error){
         console.log(error)
@@ -50,11 +52,13 @@ productRoutes.put("/:id", async (req, res) =>{
     const {id} = req.params;
     const productToUpdate = req.body
     try {
-        const update = await productModel.updateOne({_id: id}, productToUpdate);
-        if(update.modifiedCount > 0){
+        const update = await productModel.updateOne({_id : id}, productToUpdate);
+        console.log(productToUpdate)
+        // if(update.modifiedCount > 0){
             return res.send({message: 'Product updated'});
-        }
-        res.status(404).json({message: 'Product not found'});}
+        // }
+        // res.status(404).json({message: 'Product not found'});
+    }
     catch(error){
         console.log(error)
     }
