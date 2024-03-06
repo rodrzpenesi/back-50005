@@ -33,14 +33,25 @@ viewsRoutes.get('/api/products', async (req, res) => {
         console.log({products});
         res.render('products', products);
 });
-// viewsRoutes.get('/api/carts', async (req, res) => {
+viewsRoutes.get('/api/carts', async (req, res) => {
     
-//     const carts = new CartMongoManager()
-//         const productsInCart = await carts.getCarts();
-//         console.log({productsInCart});
-//         res.render('carts', productsInCart);
+    const carts = new CartMongoManager()
+        const productsInCart = await carts.getCarts();
+        const {products} = productsInCart
+        console.log(productsInCart)
+        res.render('carts', {productsInCart});
 
-// });
+});
+;
+viewsRoutes.get('/api/carts/:id', async (req, res) => {
+    
+        const carts = new CartMongoManager()
+        const {id} = req.params
+        const Cart = await carts.getProductsCartById(id);
+        console.log(Cart)
+        res.render('carts', {Cart});
+
+});
 ;
 
 export default viewsRoutes;

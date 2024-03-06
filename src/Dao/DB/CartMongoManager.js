@@ -1,8 +1,9 @@
 import mongoose from "mongoose";
 import CartModel from "../../models/carts.model.js";
+import {productModel} from "../../models/products.model.js"
 
 export class ProductCart {
-  constructor(id, quantity) {
+  constructor(id, quantity, title) {
     this.id = id
     this.quantity = quantity
   }
@@ -36,24 +37,15 @@ export class CartMongoManager {
     } 
     catch (e) {
       return {message: "ERROR" , rdo: "Error al obtener el carrito - " + e.message}
-   }
-  }
+}}
 
   async getProductsCartById(id) {
-    try
-    {
-      const cart=await CartModel.findOne({_id: id}).populate('products.product');
-      if (cart) 
-        return {message: "OK" , rdo: cart.products}
-      else 
-        return {message: "ERROR" , rdo: "El carrito no existe o no tiene productos"}
-    } 
-    catch (e) {
-      return {message: "ERROR" , rdo: "Error al obtener los productos del carrito - " + e.message}
-   }
-  }
-
-  async addProductsInCart(cId, pId, quantity) {
+    return await CartModel.findOne({ _id: id }).populate({
+      path: 'products.product',
+      model: 'products',
+      options: { lean: { virtuals: true } },
+    });}
+  async addProductsInCart(cId, pId, quantity, title) {
     try {
       const cart = await CartModel.findOne({_id: cId});
       if(cart){
@@ -62,7 +54,7 @@ export class CartMongoManager {
           existingProducts.quantity += quantity;
         }
         else{
-          cart.products.push({product: pId, quantity});
+          cart.products.push({product: pId , quantity, title: title});
         }
         await cart.save();
         return true;
