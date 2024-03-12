@@ -9,10 +9,20 @@ import mongoose from 'mongoose';
 import productRoutes from './router/products.routes.js';
 import messagesRoutes from './router/messages.routes.js';
 import { messagesModel } from './models/messages.model.js';
+import session from 'express-session';
+import cookieParser from 'cookie-parser';
+import FileStorage from 'session-file-store';
+import MongoStore from 'connect-mongo';
+import FileStore from 'session-file-store';
+import sessionRoutes from './router/session.routes.js';
+
+
+
 
 const productManager = new ProductManager('./src/Products.json');
 const app = express();
 const PORT = 8080;
+const fileStorage = FileStorage(session);
 
 const hbs = handlebars.create({
     runtimeOptions: {
@@ -20,7 +30,6 @@ const hbs = handlebars.create({
     }});
 
 app.use(express.static("public"));
-// app.engine('handlebars', handlebars.engine());
 app.engine('handlebars',hbs.engine) 
 app.set('views', 'src/views')
 app.set('view engine', 'handlebars');;
@@ -31,6 +40,37 @@ mongoose.connect("mongodb+srv://rodrzpenesi:faustoisidro@cluster0.pcy5jzv.mongod
 app.use("/api/carts", CartRouter)
 app.use("/api/chat", messagesRoutes)
 app.use("/api/products", productRoutes)
+app.use(cookieParser("C0d3rh0us3"))
+app.use(session({
+    secret: 'C0d3rh0us3',
+    store: MongoStore.create({
+        mongoUrl: 'mongodb+srv://rodrzpenesi:faustoisidro@cluster0.pcy5jzv.mongodb.net/ecommerce',
+    }),
+    resave: true,
+    saveUninitialized: true
+}));
+app.use("/api/session", sessionRoutes)
+
+// app.get("/login", (req, res)=>{
+//     const {userEmail, password} = req.query;
+//     if(userEmail!=="gogopenesi"){
+//         return res.status(401).send({messages:"user incorrect"})
+//     }
+//     req.session.user = userEmail;
+//     req.session.password = password;
+//     req.session.admin = true;
+//     res.send({messages:"Logeao"})
+// })
+app.get("/logout", (req, res) =>{
+    req.session.destroy(err=>{
+        if(!err) res.send({messages:"logout"})
+        else res.status(400).send({err});
+    })
+})
+
+app.get("/setCookie" , (req, res)=>{
+    res.cookie("coderCokie", "esto es una cokie" , {maxAge: 5000}).send({messages:"cokie seteadisima"})
+})
 
 app.engine(
 
@@ -40,9 +80,9 @@ app.engine(
     
     );
     
-    app.set('views', 'src/views');
+app.set('views', 'src/views');
     
-    app.set('view engine', 'handlebars');
+app.set('view engine', 'handlebars');
 
 
 

@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import ProductManager from '../Dao/FileSystem/ProductManager.js'
-import productRoutes from './products.routes.js';
 import { ProductMongoManager } from '../Dao/DB/ProductsMongoManager.js';
 import { CartMongoManager } from '../Dao/DB/CartMongoManager.js';
+import {checkAuth, checkExistingUser} from '../middlewares/auth.js'
 
 const productManager = new ProductManager('./src/Products.json');
 const productMongoManager = new ProductMongoManager();
@@ -52,6 +52,16 @@ viewsRoutes.get('/api/carts/:id', async (req, res) => {
         res.render('carts', {Cart});
 
 });
-;
+viewsRoutes.get('/index', checkAuth, (req, res) => {
+    const {user} = req.session;
+    res.render('index', user);
+});
 
+viewsRoutes.get('/login', checkExistingUser, (req, res) => {
+    res.render('login');
+});
+
+viewsRoutes.get('/register', checkExistingUser, (req, res) => {
+    res.render('register');
+})
 export default viewsRoutes;
