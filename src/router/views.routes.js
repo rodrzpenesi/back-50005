@@ -8,13 +8,13 @@ const productManager = new ProductManager('./src/Products.json');
 const productMongoManager = new ProductMongoManager();
 const viewsRoutes = Router();
 
-viewsRoutes.get('/', async (req, res) => {
-    let allProducts = await productManager.getProducts();
-    res.render("home", {
-        title: "home",
-        products: allProducts
-    })
-});
+// viewsRoutes.get('/', async (req, res) => {
+//     let allProducts = await productManager.getProducts();
+//     res.render("home", {
+//         title: "home",
+//         products: allProducts
+//     })
+// });
 viewsRoutes.get('/realtimeproducts', async (req, res) => {
     let allProducts = await productManager.getProducts();
     res.render("realTimeProducts", {
@@ -52,7 +52,22 @@ viewsRoutes.get('/api/carts/:id', async (req, res) => {
         res.render('carts', {Cart});
 
 });
-viewsRoutes.get('/index', checkAuth, (req, res) => {
+// viewsRoutes.get('/index', checkAuth, (req, res) => {
+//     const {user} = req.session;
+//     res.render('index', user);
+// });
+
+// viewsRoutes.get('/login', checkExistingUser, (req, res) => {
+//     res.render('login');
+// });
+
+// viewsRoutes.get('/register', checkExistingUser, (req, res) => {
+//     res.render('register');
+// })
+// viewsRoutes.get('/restore-password', checkExistingUser, (req, res) => {
+//     res.render('restore-password');
+// })
+viewsRoutes.get('/', checkAuth, (req, res) => {
     const {user} = req.session;
     res.render('index', user);
 });
@@ -64,4 +79,6 @@ viewsRoutes.get('/login', checkExistingUser, (req, res) => {
 viewsRoutes.get('/register', checkExistingUser, (req, res) => {
     res.render('register');
 })
+
+
 export default viewsRoutes;

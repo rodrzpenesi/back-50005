@@ -1,13 +1,21 @@
 import { Router } from "express";
 import { userModel } from "../models/user.model.js";
+import { createHash } from '../utils/bcrypt.js'
 
 const sessionRoutes = Router();
 
 sessionRoutes.post('/register', async (req, res) => {
-    const { first_name, last_name, email, age, password } = req.body;
+    const { first_name, 
+            last_name, 
+            email, 
+            age, 
+            password } = req.body;
     try {
         const user = await userModel.create({
-            first_name, last_name, age, email, password
+            first_name, 
+            last_name, 
+            age, email, 
+            password : createHash(password)
         });
         req.session.user = user;
         res.redirect('/index');
@@ -28,11 +36,12 @@ sessionRoutes.post('/login', async(req, res) => {
             return res.status(401).send({message: 'Invalid credentials'});
         }
         req.session.user = user;
-        res.redirect('/index');
+        res.redirect('/');
     } catch (error) {
         res.status(400).send({error});
     }
 });
+
 
 sessionRoutes.post('/logout', async(req, res) => {
     try {
@@ -46,5 +55,20 @@ sessionRoutes.post('/logout', async(req, res) => {
         res.status(400).send({error});
     }
 });
+sessionRoutes.post("/restore-password", async (req, res)=>{
+    const {email, password} = req.body;
+    try {
+        const user = await userModel.findOne({email})
+        if(!user){
+            return res.status(401).send({message: "unauthorized"})
+        }
+        user.password = createHash(password)
+        await user.save();
+        res.send({message: "password update"})
+    } catch (error) {
+        console.log(error)
+        res.status(400).send({error})
+    }
 
+})  
 export default sessionRoutes;

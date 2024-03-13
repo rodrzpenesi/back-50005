@@ -1,29 +1,29 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const userCollection = 'users';
 
-const userShema = mongoose.Schema({
-    first_name:{
+const userSchema = mongoose.Schema({
+    first_name: {
         type: String,
-        require: true
+        required: true
     },
-    last_name:{
+    last_name: {
         type: String,
-        require: true
+        required: true
     },
-    email:{
+    email: {
         type: String,
-        require: true,
+        required: true,
         unique: true
     },
-    age:{
+    age: {
         type: Number,
-        require: true
+        required: true,
     },
-    password:{
+    password: {
         type: String,
-        require: true
-    }
-})
+        required: true,
+    },
+});
 
-export const userModel = mongoose.model(userCollection, userShema);
+export const userModel = mongoose.model(userCollection, userSchema);

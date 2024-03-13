@@ -11,7 +11,6 @@ import messagesRoutes from './router/messages.routes.js';
 import { messagesModel } from './models/messages.model.js';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
-import FileStorage from 'session-file-store';
 import MongoStore from 'connect-mongo';
 import FileStore from 'session-file-store';
 import sessionRoutes from './router/session.routes.js';
@@ -19,28 +18,12 @@ import sessionRoutes from './router/session.routes.js';
 
 
 
-const productManager = new ProductManager('./src/Products.json');
-const app = express();
+// const productManager = new ProductManager('./src/Products.json');
 const PORT = 8080;
-const fileStorage = FileStorage(session);
+const fileStore = FileStore(session);
+const app = express();
 
-const hbs = handlebars.create({
-    runtimeOptions: {
-        allowProtoPropertiesByDefault: true
-    }});
 
-app.use(express.static("public"));
-app.engine('handlebars',hbs.engine) 
-app.set('views', 'src/views')
-app.set('view engine', 'handlebars');;
-app.use('/', viewsRoutes);
-app.use(express.json());
-app.use(express.urlencoded({ extended:true}));
-mongoose.connect("mongodb+srv://rodrzpenesi:faustoisidro@cluster0.pcy5jzv.mongodb.net/ecommerce")
-app.use("/api/carts", CartRouter)
-app.use("/api/chat", messagesRoutes)
-app.use("/api/products", productRoutes)
-app.use(cookieParser("C0d3rh0us3"))
 app.use(session({
     secret: 'C0d3rh0us3',
     store: MongoStore.create({
@@ -49,7 +32,27 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }));
+mongoose.connect("mongodb+srv://rodrzpenesi:faustoisidro@cluster0.pcy5jzv.mongodb.net/ecommerce")
+
+const hbs = handlebars.create({
+    runtimeOptions: {
+        allowProtoPropertiesByDefault: true
+    }});
+
+app.use(express.json());
+app.use(express.urlencoded({ extended:true}));
+app.use(express.static("public"));
+app.engine('handlebars',hbs.engine) 
+app.set('views', 'src/views')
+app.set('view engine', 'handlebars');;
 app.use("/api/session", sessionRoutes)
+app.use('/', viewsRoutes);
+app.use("/api/carts", CartRouter)
+app.use("/api/chat", messagesRoutes)
+app.use("/api/products", productRoutes)
+app.use(cookieParser("C0d3rh0us3"))
+
+
 
 // app.get("/login", (req, res)=>{
 //     const {userEmail, password} = req.query;
@@ -103,3 +106,4 @@ io.on('connection', socket => {
         const added = messagesModel.create(messages)
     })
 });
+
