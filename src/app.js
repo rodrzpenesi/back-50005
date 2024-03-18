@@ -14,7 +14,8 @@ import cookieParser from 'cookie-parser';
 import MongoStore from 'connect-mongo';
 import FileStore from 'session-file-store';
 import sessionRoutes from './router/session.routes.js';
-
+import passport from 'passport';
+import initializePassport from './config/passport.config.js';
 
 
 
@@ -38,6 +39,10 @@ const hbs = handlebars.create({
     runtimeOptions: {
         allowProtoPropertiesByDefault: true
     }});
+
+initializePassport();
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended:true}));
