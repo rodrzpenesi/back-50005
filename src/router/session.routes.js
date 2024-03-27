@@ -3,6 +3,7 @@ import { userModel } from "../models/user.model.js";
 import { createHash, isValidPassword } from '../utils/bcrypt.js'
 import passport from "passport";
 import { generateToken } from "../config/jwt.config.js";
+import { authorization } from "../utils/authorization.js";
 
 
 const sessionRoutes = Router();
@@ -89,22 +90,21 @@ sessionRoutes.post('/logout', async(req, res) => {
         res.status(400).send({error});
     }
 });
-sessionRoutes.post("/restore-password", async (req, res)=>{
-    const {email, password} = req.body;
+sessionRoutes.post("/restore-password", async (req, res) => {
+    const { email, password } = req.body;
     try {
-        const user = await userModel.findOne({email})
-        if(!user){
-            return res.status(401).send({message: "unauthorized"})
-        }
-        user.password = createHash(password)
-        await user.save();
-        res.send({message: "password update"})
-    } catch (error) {
-        console.log(error)
-        res.status(400).send({error})
+        const user = await userModel.findOne({ email });
+        if (!user) {
+        return res.status(401).send({ message: "Unauthorized" });
     }
-
-})  
+        user.password = createHash(password);
+        await user.save();
+        res.send({ message: "Password updated" });
+        } catch (error) {
+        console.error(error);
+        res.status(400).send({ error });
+        }
+    }); 
 sessionRoutes.get("/github", passport.authenticate("github", {scope: ['user:email']}), (req, res)=>{
 
 })

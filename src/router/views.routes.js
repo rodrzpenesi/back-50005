@@ -3,6 +3,7 @@ import ProductManager from '../Dao/FileSystem/ProductManager.js'
 import { ProductMongoManager } from '../Dao/DB/ProductsMongoManager.js';
 import { CartMongoManager } from '../Dao/DB/CartMongoManager.js';
 import {checkAuth, checkExistingUser} from '../middlewares/auth.js'
+import { authorization } from '../utils/authorization.js';
 
 const productManager = new ProductManager('./src/Products.json');
 const productMongoManager = new ProductMongoManager();
@@ -64,9 +65,9 @@ viewsRoutes.get('/api/carts/:id', async (req, res) => {
 // viewsRoutes.get('/register', checkExistingUser, (req, res) => {
 //     res.render('register');
 // })
-// viewsRoutes.get('/restore-password', checkExistingUser, (req, res) => {
-//     res.render('restore-password');
-// })
+viewsRoutes.get('/restore-password', checkExistingUser, (req, res) => {
+    res.render('restore.password');
+})
 viewsRoutes.get('/', checkAuth, (req, res) => {
     const {user} = req.session;
     res.render('index', user);
@@ -79,6 +80,8 @@ viewsRoutes.get('/login', checkExistingUser, (req, res) => {
 viewsRoutes.get('/register', checkExistingUser, (req, res) => {
     res.render('register');
 })
-
+viewsRoutes.get('/current', (req, res) => {
+    res.json({ user: req.session.user });
+});
 
 export default viewsRoutes;
